@@ -7,11 +7,11 @@
   ],
   "scripts": {
     "shopify": "shopify",
-    "build": "shopify app build",
-    "dev": "shopify app dev",
+    "build": "set -a; . ./.env 2>/dev/null; set +a; shopify app build",
+    "dev": "set -a; . ./.env 2>/dev/null; set +a; shopify app dev",
     "info": "shopify app info",
     "generate": "shopify app generate",
-    "deploy": "shopify app deploy"
+    "deploy": "set -a; . ./.env 2>/dev/null; set +a; shopify app deploy"
   },
   "dependencies": {},
   "trustedDependencies": [
