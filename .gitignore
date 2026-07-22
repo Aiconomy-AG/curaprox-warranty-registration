@@ -34,3 +34,5 @@ dist
 *.njsproj
 *.sln
 *.sw?
+# Shopify extension build artifact
+extensions/*/manifest.json
