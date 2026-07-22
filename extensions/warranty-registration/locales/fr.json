@@ -1,0 +1,59 @@
+{
+  "page": {
+    "heading": "Enregistrement de garantie"
+  },
+  "intro": "Enregistrez votre appareil Hydrosonic pour prolonger sa garantie à 3 ans. Vous pouvez voir tous vos produits enregistrés ci-dessous.",
+  "register": {
+    "heading": "Enregistrer un produit",
+    "submit": "Enregistrer le produit",
+    "submitting": "Envoi…",
+    "cancel": "Annuler"
+  },
+  "coverage": {
+    "title": "Couverture de garantie —",
+    "body": "La garantie de 2 ans est automatiquement activée avec votre preuve d'achat. Enregistrez votre produit pour la prolonger à 3 ans."
+  },
+  "field": {
+    "model": "Modèle Hydrosonic",
+    "serial": "Numéro de série",
+    "purchaseDate": "Date d'achat",
+    "store": "Magasin"
+  },
+  "dropzone": {
+    "prompt": "Déposez votre facture ici ou cliquez pour la téléverser (PDF, JPG ou PNG)"
+  },
+  "success": "Votre produit a été enregistré.",
+  "error": {
+    "field": {
+      "model": "Indiquez le modèle Hydrosonic.",
+      "serialRequired": "Indiquez le numéro de série.",
+      "serialFormat": "Vérifiez que le numéro de série est correct (deux lettres majuscules suivies de 5 chiffres).",
+      "date": "Indiquez la date d'achat.",
+      "dateFuture": "La date d'achat ne peut pas être dans le futur.",
+      "store": "Indiquez le magasin où vous avez acheté l'appareil.",
+      "invoice": "Joignez votre facture au format PDF, JPG ou PNG (max. 10 Mo)."
+    },
+    "sessionExpired": "Votre session a expiré. Veuillez recharger la page et vous reconnecter.",
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "network": "Erreur réseau. Veuillez réessayer."
+  },
+  "list": {
+    "heading": "Produits enregistrés",
+    "count": "{{count}} produits enregistrés",
+    "newDevice": "Nouvel appareil",
+    "loading": "Chargement de vos enregistrements",
+    "error": "Nous n'avons pas pu charger vos enregistrements.",
+    "retry": "Réessayer",
+    "empty": "Vous n'avez pas encore de produits enregistrés.",
+    "imported": "Importé",
+    "modelFallback": "Hydrosonic",
+    "status": {
+      "active": "Active · garantie de {{years}} ans",
+      "expired": "Expirée · garantie de {{years}} ans"
+    },
+    "serialRegistered": "Numéro de série : {{serial}} · Enregistré {{date}}",
+    "warrantyEnd": "Garantie valable jusqu'au : {{value}}",
+    "warrantyClaim": "Demande de garantie",
+    "claimPlaceholder": "Espace réservé"
+  }
+}

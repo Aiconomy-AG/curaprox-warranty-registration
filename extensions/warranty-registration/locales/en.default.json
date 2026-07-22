@@ -1,0 +1,59 @@
+{
+  "page": {
+    "heading": "Warranty registration"
+  },
+  "intro": "Register your Hydrosonic device to extend its warranty to 3 years. You can see all your registered products below.",
+  "register": {
+    "heading": "Register a product",
+    "submit": "Register product",
+    "submitting": "Submitting…",
+    "cancel": "Cancel"
+  },
+  "coverage": {
+    "title": "Warranty coverage —",
+    "body": "The 2-year warranty is automatically activated with your proof of purchase. Register your product to extend it to 3 years."
+  },
+  "field": {
+    "model": "Hydrosonic model",
+    "serial": "Serial number",
+    "purchaseDate": "Purchase date",
+    "store": "Store"
+  },
+  "dropzone": {
+    "prompt": "Drop your invoice here or click to upload (PDF, JPG or PNG)"
+  },
+  "success": "Your product has been registered.",
+  "error": {
+    "field": {
+      "model": "Enter the Hydrosonic model.",
+      "serialRequired": "Enter the serial number.",
+      "serialFormat": "Make sure the serial is correct (should be two capital letters followed by 5 digits).",
+      "date": "Enter purchase date.",
+      "dateFuture": "Purchase date can't be in the future.",
+      "store": "Enter the store where you purchased the device.",
+      "invoice": "Attach your invoice as a PDF, JPG or PNG (max 10 MB)."
+    },
+    "sessionExpired": "Your session expired. Please reload the page and sign in again.",
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network error. Please try again."
+  },
+  "list": {
+    "heading": "Registered products",
+    "count": "{{count}} registered products",
+    "newDevice": "New device",
+    "loading": "Loading your registrations",
+    "error": "We couldn't load your registrations.",
+    "retry": "Try again",
+    "empty": "You have no registered products yet.",
+    "imported": "Imported",
+    "modelFallback": "Hydrosonic",
+    "status": {
+      "active": "Active · {{years}}-year warranty",
+      "expired": "Expired · {{years}}-year warranty"
+    },
+    "serialRegistered": "Serial: {{serial}} · Registered {{date}}",
+    "warrantyEnd": "Warranty valid until: {{value}}",
+    "warrantyClaim": "Warranty claim",
+    "claimPlaceholder": "Placeholder"
+  }
+}

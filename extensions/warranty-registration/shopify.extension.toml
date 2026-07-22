@@ -1,0 +1,24 @@
+# Customer account UI extension — Hydrosonic warranty registration.
+# Full page under My Account: register a product + view own registrations.
+# Docs: https://shopify.dev/docs/api/customer-account-ui-extensions/2026-04
+
+api_version = "2026-04"
+
+[[extensions]]
+name = "Warranty registration"
+handle = "warranty-registration"
+type = "ui_extension"
+uid = "3cc20935-3fea-e9d2-7a90-dde493db5af2f5b9eeb9"
+
+# Full-page target — can be added to the customer-account navigation menu via
+# the checkout & customer accounts editor.
+[[extensions.targeting]]
+module = "./src/WarrantyPage.jsx"
+target = "customer-account.page.render"
+
+[extensions.capabilities]
+# Storefront API access — not needed (we talk to the AICO backend).
+api_access = false
+
+# Required: the extension makes fetch() calls to the AICO backend.
+network_access = true

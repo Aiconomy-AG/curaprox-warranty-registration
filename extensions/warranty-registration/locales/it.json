@@ -1,0 +1,59 @@
+{
+  "page": {
+    "heading": "Registrazione della garanzia"
+  },
+  "intro": "Registra il tuo dispositivo Hydrosonic per estendere la garanzia a 3 anni. Di seguito puoi vedere tutti i tuoi prodotti registrati.",
+  "register": {
+    "heading": "Registra un prodotto",
+    "submit": "Registra prodotto",
+    "submitting": "Invio in corso…",
+    "cancel": "Annulla"
+  },
+  "coverage": {
+    "title": "Copertura della garanzia —",
+    "body": "La garanzia di 2 anni si attiva automaticamente con la prova d'acquisto. Registra il tuo prodotto per estenderla a 3 anni."
+  },
+  "field": {
+    "model": "Modello Hydrosonic",
+    "serial": "Numero di serie",
+    "purchaseDate": "Data di acquisto",
+    "store": "Negozio"
+  },
+  "dropzone": {
+    "prompt": "Trascina qui la fattura o fai clic per caricarla (PDF, JPG o PNG)"
+  },
+  "success": "Il tuo prodotto è stato registrato.",
+  "error": {
+    "field": {
+      "model": "Inserisci il modello Hydrosonic.",
+      "serialRequired": "Inserisci il numero di serie.",
+      "serialFormat": "Assicurati che il numero di serie sia corretto (due lettere maiuscole seguite da 5 cifre).",
+      "date": "Inserisci la data di acquisto.",
+      "dateFuture": "La data di acquisto non può essere nel futuro.",
+      "store": "Indica il negozio in cui hai acquistato il dispositivo.",
+      "invoice": "Allega la tua fattura in formato PDF, JPG o PNG (max 10 MB)."
+    },
+    "sessionExpired": "La tua sessione è scaduta. Ricarica la pagina e accedi di nuovo.",
+    "generic": "Qualcosa è andato storto. Riprova.",
+    "network": "Errore di rete. Riprova."
+  },
+  "list": {
+    "heading": "Prodotti registrati",
+    "count": "{{count}} prodotti registrati",
+    "newDevice": "Nuovo dispositivo",
+    "loading": "Caricamento delle tue registrazioni",
+    "error": "Non è stato possibile caricare le tue registrazioni.",
+    "retry": "Riprova",
+    "empty": "Non hai ancora prodotti registrati.",
+    "imported": "Importato",
+    "modelFallback": "Hydrosonic",
+    "status": {
+      "active": "Attiva · garanzia di {{years}} anni",
+      "expired": "Scaduta · garanzia di {{years}} anni"
+    },
+    "serialRegistered": "Numero di serie: {{serial}} · Registrato {{date}}",
+    "warrantyEnd": "Garanzia valida fino al: {{value}}",
+    "warrantyClaim": "Richiesta di garanzia",
+    "claimPlaceholder": "Segnaposto"
+  }
+}

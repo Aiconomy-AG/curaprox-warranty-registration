@@ -1,0 +1,59 @@
+{
+  "page": {
+    "heading": "Garantieregistrierung"
+  },
+  "intro": "Registrieren Sie Ihr Hydrosonic-Gerät, um die Garantie auf 3 Jahre zu verlängern. Unten sehen Sie alle Ihre registrierten Produkte.",
+  "register": {
+    "heading": "Produkt registrieren",
+    "submit": "Produkt registrieren",
+    "submitting": "Wird gesendet…",
+    "cancel": "Abbrechen"
+  },
+  "coverage": {
+    "title": "Garantieabdeckung —",
+    "body": "Die 2-Jahres-Garantie wird automatisch mit Ihrem Kaufbeleg aktiviert. Registrieren Sie Ihr Produkt, um sie auf 3 Jahre zu verlängern."
+  },
+  "field": {
+    "model": "Hydrosonic-Modell",
+    "serial": "Seriennummer",
+    "purchaseDate": "Kaufdatum",
+    "store": "Geschäft"
+  },
+  "dropzone": {
+    "prompt": "Rechnung hier ablegen oder zum Hochladen klicken (PDF, JPG oder PNG)"
+  },
+  "success": "Ihr Produkt wurde registriert.",
+  "error": {
+    "field": {
+      "model": "Geben Sie das Hydrosonic-Modell an.",
+      "serialRequired": "Geben Sie die Seriennummer an.",
+      "serialFormat": "Stellen Sie sicher, dass die Seriennummer korrekt ist (zwei Großbuchstaben gefolgt von 5 Ziffern).",
+      "date": "Kaufdatum eingeben.",
+      "dateFuture": "Das Kaufdatum darf nicht in der Zukunft liegen.",
+      "store": "Geben Sie das Geschäft an, in dem Sie das Gerät gekauft haben.",
+      "invoice": "Fügen Sie Ihre Rechnung als PDF, JPG oder PNG bei (max. 10 MB)."
+    },
+    "sessionExpired": "Ihre Sitzung ist abgelaufen. Bitte laden Sie die Seite neu und melden Sie sich erneut an.",
+    "generic": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+    "network": "Netzwerkfehler. Bitte versuchen Sie es erneut."
+  },
+  "list": {
+    "heading": "Registrierte Produkte",
+    "count": "{{count}} registrierte Produkte",
+    "newDevice": "Neues Gerät",
+    "loading": "Ihre Registrierungen werden geladen",
+    "error": "Wir konnten Ihre Registrierungen nicht laden.",
+    "retry": "Erneut versuchen",
+    "empty": "Sie haben noch keine registrierten Produkte.",
+    "imported": "Importiert",
+    "modelFallback": "Hydrosonic",
+    "status": {
+      "active": "Aktiv · {{years}} Jahre Garantie",
+      "expired": "Abgelaufen · {{years}} Jahre Garantie"
+    },
+    "serialRegistered": "Seriennummer: {{serial}} · Registriert {{date}}",
+    "warrantyEnd": "Garantie gültig bis: {{value}}",
+    "warrantyClaim": "Garantiefall",
+    "claimPlaceholder": "Platzhalter"
+  }
+}
