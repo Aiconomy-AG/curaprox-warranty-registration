@@ -14,10 +14,11 @@ import {useEffect, useState} from 'preact/hooks';
  * derives the customer id from the token — we never send it.
  */
 
-// Public HTTPS origin of the AICO backend. Shopify's extension sandbox can't
-// reach 127.0.0.1, so local sail is exposed via a cloudflared quick tunnel.
-// NOTE: quick-tunnel URLs are ephemeral — if the tunnel restarts, update this.
-const AICO_API_ORIGIN = 'https://aicoapp.aico.swiss/83641';
+// Public HTTPS base URL of the AICO backend (origin + tenant prefix), inlined
+// at build time from AICO_API_ORIGIN in the app root .env (see .env.example).
+// Shopify's extension sandbox can't reach 127.0.0.1, so for local dev point it
+// at a cloudflared quick tunnel exposing sail.
+const AICO_API_ORIGIN = process.env.AICO_API_ORIGIN;
 const REGISTRATIONS_PATH = '/api/shopify/warranty-registrations';
 
 // This one extension build is installed on both stores (Switzerland/Europe and
