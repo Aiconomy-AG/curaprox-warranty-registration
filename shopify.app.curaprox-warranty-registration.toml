@@ -1,19 +1,12 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "4a63ad0a618b417c33b58cf653df9664"
-name = "Curaprox Warranty Registration"
+client_id = "37c597bc08bf99b6abf623c90ca4e2a9"
 application_url = "https://shopify.dev/apps/default-app-home"
 embedded = true
-
-[build]
-automatically_update_urls_on_dev = true
+name = "Curaprox Warranty Registration"
 
 [webhooks]
 api_version = "2026-10"
-
-[access.admin]
-direct_api_mode = "online"
-embedded_app_direct_api_access = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
@@ -21,3 +14,6 @@ scopes = "read_customers"
 
 [auth]
 redirect_urls = [ "https://shopify.dev/apps/default-app-home/api/auth" ]
+
+[build]
+automatically_update_urls_on_dev = true

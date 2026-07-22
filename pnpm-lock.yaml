@@ -8,27 +8,6 @@ importers:
 
   .: {}
 
-  extensions/app-home:
-    dependencies:
-      '@preact/signals':
-        specifier: ^2.3.x
-        version: 2.9.4(preact@10.29.7)
-      '@shopify/ui-extensions':
-        specifier: rc
-        version: 2026.7.0-rc.7(@preact/signals@2.9.4(preact@10.29.7))(preact@10.29.7)
-      preact:
-        specifier: ^10.10.x
-        version: 10.29.7(preact-render-to-string@6.7.0)
-      preact-iso:
-        specifier: ^2.9.1
-        version: 2.12.0(preact-render-to-string@6.7.0)(preact@10.29.7)
-
-  extensions/app-tools:
-    dependencies:
-      '@shopify/ui-extensions':
-        specifier: ~2025.10.12
-        version: 2025.10.16(@preact/signals@2.9.4(preact@10.29.7))(preact@10.29.7)
-
   extensions/warranty-registration:
     dependencies:
       '@preact/signals':
@@ -63,30 +42,8 @@ packages:
     peerDependencies:
       preact: '>= 10.25.0 || >=11.0.0-0'
 
-  '@shopify/ui-extensions@2025.10.16':
-    resolution: {integrity: sha512-w8Lr8NbAILhtqWmeKH/9osFWBsB+G0ksWho/V3cruhK/t0GcdQA6GANKokFPTsmD9sszqlrrO+URbs5I/vHxiQ==}
-    peerDependencies:
-      '@preact/signals': '*'
-      preact: '*'
-    peerDependenciesMeta:
-      '@preact/signals':
-        optional: true
-      preact:
-        optional: true
-
   '@shopify/ui-extensions@2026.4.4':
     resolution: {integrity: sha512-cwyvjHx2Y1jhHR2Q5GgDXMsAb/BQcnFVGmev0viCOwL+cgithkilb+xdirLXaeqUAfSvPjOsM9fVlGMstVMlsA==}
-    peerDependencies:
-      '@preact/signals': '*'
-      preact: '*'
-    peerDependenciesMeta:
-      '@preact/signals':
-        optional: true
-      preact:
-        optional: true
-
-  '@shopify/ui-extensions@2026.7.0-rc.7':
-    resolution: {integrity: sha512-wTzxUxItjGrFsgTHcngN5EM2KQ9VysmsqEpABusP7XNdvTpwJ3c5Lq9vSW8ALViqDVrK+JmJlcXpq6ImsITk2Q==}
     peerDependencies:
       '@preact/signals': '*'
       preact: '*'
@@ -158,12 +115,6 @@ packages:
     resolution: {integrity: sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA==}
     engines: {node: '>=8.6'}
 
-  preact-iso@2.12.0:
-    resolution: {integrity: sha512-k0Y44UONBJ1zBXXCBhJRAa5O4ww8a5FHdLD6l21IxcnsTmDBto4n7KPQAH6xqegsKDMX4SuJ02qItiUlciIlZQ==}
-    peerDependencies:
-      preact: '>=10 || >= 11.0.0-0'
-      preact-render-to-string: '>=6.4.0'
-
   preact-render-to-string@6.7.0:
     resolution: {integrity: sha512-Z4WR8fmLMRpdYqJ9i7vrlXSsSrxVJydwrkEXHapexfARbWfGb7vGcnvNQnIzN0cXciMVOlz/XLoiMCi9gUsy9Q==}
     peerDependencies:
@@ -215,21 +166,7 @@ snapshots:
       '@preact/signals-core': 1.14.4
       preact: 10.29.7(preact-render-to-string@6.7.0)
 
-  '@shopify/ui-extensions@2025.10.16(@preact/signals@2.9.4(preact@10.29.7))(preact@10.29.7)':
-    dependencies:
-      ts-morph: 25.0.1
-    optionalDependencies:
-      '@preact/signals': 2.9.4(preact@10.29.7)
-      preact: 10.29.7(preact-render-to-string@6.7.0)
-
   '@shopify/ui-extensions@2026.4.4(@preact/signals@2.9.4(preact@10.29.7))(preact@10.29.7)':
-    dependencies:
-      ts-morph: 25.0.1
-    optionalDependencies:
-      '@preact/signals': 2.9.4(preact@10.29.7)
-      preact: 10.29.7(preact-render-to-string@6.7.0)
-
-  '@shopify/ui-extensions@2026.7.0-rc.7(@preact/signals@2.9.4(preact@10.29.7))(preact@10.29.7)':
     dependencies:
       ts-morph: 25.0.1
     optionalDependencies:
@@ -297,14 +234,10 @@ snapshots:
 
   picomatch@2.3.2: {}
 
-  preact-iso@2.12.0(preact-render-to-string@6.7.0)(preact@10.29.7):
-    dependencies:
-      preact: 10.29.7(preact-render-to-string@6.7.0)
-      preact-render-to-string: 6.7.0(preact@10.29.7)
-
   preact-render-to-string@6.7.0(preact@10.29.7):
     dependencies:
       preact: 10.29.7(preact-render-to-string@6.7.0)
+    optional: true
 
   preact@10.29.7(preact-render-to-string@6.7.0):
     optionalDependencies:

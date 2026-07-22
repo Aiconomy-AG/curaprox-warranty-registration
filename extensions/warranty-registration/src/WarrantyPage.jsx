@@ -17,7 +17,7 @@ import {useEffect, useState} from 'preact/hooks';
 // Public HTTPS origin of the AICO backend. Shopify's extension sandbox can't
 // reach 127.0.0.1, so local sail is exposed via a cloudflared quick tunnel.
 // NOTE: quick-tunnel URLs are ephemeral — if the tunnel restarts, update this.
-const AICO_API_ORIGIN = '';
+const AICO_API_ORIGIN = 'https://aicoapp.aico.swiss/83641';
 const REGISTRATIONS_PATH = '/api/shopify/warranty-registrations';
 
 // This one extension build is installed on both stores (Switzerland/Europe and
