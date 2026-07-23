@@ -122,6 +122,36 @@ async function authHeader() {
     return {Authorization: `Bearer ${token}`};
 }
 
+// The extension sandbox's fetch cannot serialize a FormData carrying the
+// drop-zone's File (the request never leaves the worker), so the multipart
+// body is assembled by hand: text fields + the invoice bytes joined with an
+// explicit boundary, sent as a Uint8Array with a matching Content-Type.
+async function multipartBody(fields, file) {
+    const boundary = '----warranty-' + Math.random().toString(36).slice(2);
+    const enc = new TextEncoder();
+    const parts = [];
+    for (const [name, value] of Object.entries(fields)) {
+        parts.push(enc.encode(
+            `--${boundary}\r\nContent-Disposition: form-data; name="${name}"\r\n\r\n${value}\r\n`,
+        ));
+    }
+    const filename = (file.name || 'invoice').replace(/"/g, '');
+    parts.push(enc.encode(
+        `--${boundary}\r\nContent-Disposition: form-data; name="invoice"; filename="${filename}"\r\n` +
+        `Content-Type: ${file.type || 'application/octet-stream'}\r\n\r\n`,
+    ));
+    parts.push(new Uint8Array(await file.arrayBuffer()));
+    parts.push(enc.encode(`\r\n--${boundary}--\r\n`));
+
+    const body = new Uint8Array(parts.reduce((total, part) => total + part.byteLength, 0));
+    let offset = 0;
+    for (const part of parts) {
+        body.set(part, offset);
+        offset += part.byteLength;
+    }
+    return {body, contentType: `multipart/form-data; boundary=${boundary}`};
+}
+
 function WarrantyPage() {
     const translate = useTranslate();
 
@@ -207,13 +237,11 @@ function WarrantyPage() {
 
         setSubmitting(true);
         try {
-            const body = new FormData();
-            Object.entries(form).forEach(([key, value]) => body.append(key, value));
-            body.append('invoice', invoice);
+            const {body, contentType} = await multipartBody(form, invoice);
 
             const res = await fetch(AICO_API_ORIGIN + REGISTRATIONS_PATH, {
                 method: 'POST',
-                headers: await authHeader(), // no Content-Type: browser sets the multipart boundary
+                headers: {...(await authHeader()), 'Content-Type': contentType},
                 body,
             });
 
