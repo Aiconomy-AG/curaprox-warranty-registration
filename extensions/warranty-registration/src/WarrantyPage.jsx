@@ -126,7 +126,8 @@ async function authHeader() {
 // drop-zone's File (the request never leaves the worker), so the multipart
 // body is assembled by hand: text fields + the invoice bytes joined with an
 // explicit boundary, sent as a Uint8Array with a matching Content-Type.
-async function multipartBody(fields, file) {
+// `invoice` is the {name, type, bytes} snapshot taken at selection time.
+function multipartBody(fields, invoice) {
     const boundary = '----warranty-' + Math.random().toString(36).slice(2);
     const enc = new TextEncoder();
     const parts = [];
@@ -135,12 +136,12 @@ async function multipartBody(fields, file) {
             `--${boundary}\r\nContent-Disposition: form-data; name="${name}"\r\n\r\n${value}\r\n`,
         ));
     }
-    const filename = (file.name || 'invoice').replace(/"/g, '');
+    const filename = invoice.name.replace(/"/g, '');
     parts.push(enc.encode(
         `--${boundary}\r\nContent-Disposition: form-data; name="invoice"; filename="${filename}"\r\n` +
-        `Content-Type: ${file.type || 'application/octet-stream'}\r\n\r\n`,
+        `Content-Type: ${invoice.type}\r\n\r\n`,
     ));
-    parts.push(new Uint8Array(await file.arrayBuffer()));
+    parts.push(invoice.bytes);
     parts.push(enc.encode(`\r\n--${boundary}--\r\n`));
 
     const body = new Uint8Array(parts.reduce((total, part) => total + part.byteLength, 0));
@@ -237,7 +238,7 @@ function WarrantyPage() {
 
         setSubmitting(true);
         try {
-            const {body, contentType} = await multipartBody(form, invoice);
+            const {body, contentType} = multipartBody(form, invoice);
 
             const res = await fetch(AICO_API_ORIGIN + REGISTRATIONS_PATH, {
                 method: 'POST',
@@ -330,9 +331,22 @@ function WarrantyPage() {
                                     label={invoice ? invoice.name : translate('dropzone.prompt')}
                                     error={fieldError('invoice')}
                                     required
-                                    onChange={(event) => {
+                                    onChange={async (event) => {
                                         const el = /** @type {{files?: readonly File[]}} */ (event.currentTarget);
-                                        setInvoice(el.files?.[0] ?? null);
+                                        const file = el.files?.[0] ?? null;
+                                        if (!file) {
+                                            setInvoice(null);
+                                            return;
+                                        }
+                                        // Snapshot the bytes now: the sandbox File proxy is
+                                        // single-use, so reading it at (re)submit time fails
+                                        // on any second attempt.
+                                        const bytes = new Uint8Array(await file.arrayBuffer());
+                                        setInvoice({
+                                            name: file.name || 'invoice',
+                                            type: file.type || 'application/octet-stream',
+                                            bytes,
+                                        });
                                     }}
                                 />
 
