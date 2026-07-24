@@ -122,37 +122,6 @@ async function authHeader() {
     return {Authorization: `Bearer ${token}`};
 }
 
-// The extension sandbox's fetch cannot serialize a FormData carrying the
-// drop-zone's File (the request never leaves the worker), so the multipart
-// body is assembled by hand: text fields + the invoice bytes joined with an
-// explicit boundary, sent as a Uint8Array with a matching Content-Type.
-// `invoice` is the {name, type, bytes} snapshot taken at selection time.
-function multipartBody(fields, invoice) {
-    const boundary = '----warranty-' + Math.random().toString(36).slice(2);
-    const enc = new TextEncoder();
-    const parts = [];
-    for (const [name, value] of Object.entries(fields)) {
-        parts.push(enc.encode(
-            `--${boundary}\r\nContent-Disposition: form-data; name="${name}"\r\n\r\n${value}\r\n`,
-        ));
-    }
-    const filename = invoice.name.replace(/"/g, '');
-    parts.push(enc.encode(
-        `--${boundary}\r\nContent-Disposition: form-data; name="invoice"; filename="${filename}"\r\n` +
-        `Content-Type: ${invoice.type}\r\n\r\n`,
-    ));
-    parts.push(invoice.bytes);
-    parts.push(enc.encode(`\r\n--${boundary}--\r\n`));
-
-    const body = new Uint8Array(parts.reduce((total, part) => total + part.byteLength, 0));
-    let offset = 0;
-    for (const part of parts) {
-        body.set(part, offset);
-        offset += part.byteLength;
-    }
-    return {body, contentType: `multipart/form-data; boundary=${boundary}`};
-}
-
 function WarrantyPage() {
     const translate = useTranslate();
 
@@ -238,11 +207,18 @@ function WarrantyPage() {
 
         setSubmitting(true);
         try {
-            const {body, contentType} = multipartBody(form, invoice);
+            // Pass the raw File straight to FormData — do NOT read its bytes or
+            // wrap it in new File()/Blob. Safari's sandboxed (null-origin) worker
+            // refuses to read the picked file's bytes ("I/O read operation
+            // failed"), but the Shopify bridge marshals a raw File in FormData
+            // fine. Let the browser set the multipart Content-Type + boundary.
+            const body = new FormData();
+            Object.entries(form).forEach(([key, value]) => body.append(key, value));
+            body.append('invoice', invoice);
 
             const res = await fetch(AICO_API_ORIGIN + REGISTRATIONS_PATH, {
                 method: 'POST',
-                headers: {...(await authHeader()), 'Content-Type': contentType},
+                headers: await authHeader(),
                 body,
             });
 
@@ -331,22 +307,19 @@ function WarrantyPage() {
                                     label={invoice ? invoice.name : translate('dropzone.prompt')}
                                     error={fieldError('invoice')}
                                     required
-                                    onChange={async (event) => {
+                                    onChange={(event) => {
+                                        // Keep the raw File — never read its bytes here (Safari's
+                                        // sandbox blocks that). It's handed straight to FormData
+                                        // at submit. Clear any prior invoice error on a pick.
                                         const el = /** @type {{files?: readonly File[]}} */ (event.currentTarget);
                                         const file = el.files?.[0] ?? null;
-                                        if (!file) {
-                                            setInvoice(null);
-                                            return;
+                                        setInvoice(file);
+                                        if (file) {
+                                            setFieldErrors((prev) => {
+                                                const {invoice: _drop, ...rest} = prev;
+                                                return rest;
+                                            });
                                         }
-                                        // Snapshot the bytes now: the sandbox File proxy is
-                                        // single-use, so reading it at (re)submit time fails
-                                        // on any second attempt.
-                                        const bytes = new Uint8Array(await file.arrayBuffer());
-                                        setInvoice({
-                                            name: file.name || 'invoice',
-                                            type: file.type || 'application/octet-stream',
-                                            bytes,
-                                        });
                                     }}
                                 />
 
