@@ -5,7 +5,9 @@
 api_version = "2026-04"
 
 [[extensions]]
-name = "Warranty registration"
+# Localized: resolves to the top-level `name` key in locales/*.json so the
+# customer-account nav menu title translates per buyer language.
+name = "t:name"
 handle = "warranty-registration"
 type = "ui_extension"
 uid = "3cc20935-3fea-e9d2-7a90-dde493db5af2f5b9eeb9"
